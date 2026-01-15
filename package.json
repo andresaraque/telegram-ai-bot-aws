@@ -1,8 +1,27 @@
 {
   "name": "telegram-bot",
   "version": "0.1.0",
+  "description": "Event-Driven Telegram Bot using AWS Lambda, EventBridge, and Node.js 22",
+  "author": "Andres Felipe Araque Mora",
+  "keywords": [
+    "aws",
+    "telegram-bot",
+    "serverless",
+    "event-driven",
+    "aws-cdk",
+    "typescript",
+    "lambda",
+    "node22"
+  ],
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "bin": {
     "telegram-bot": "bin/telegram-bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andresaraque/telegram-bot.git"
   },
   "scripts": {
     "build": "tsc",
@@ -11,15 +30,20 @@
     "cdk": "cdk"
   },
   "devDependencies": {
+    "@types/aws-lambda": "^8.10.159",
     "@types/jest": "^29.5.14",
     "@types/node": "^24.10.1",
+    "aws-cdk": "2.1100.1",
     "jest": "^29.7.0",
     "ts-jest": "^29.2.5",
-    "aws-cdk": "2.1100.1",
     "ts-node": "^10.9.2",
     "typescript": "~5.9.3"
   },
   "dependencies": {
+    "@aws-lambda-powertools/logger": "^2.30.2",
+    "@aws-sdk/util-dynamodb": "^3.969.0",
+    "@aws-sdk/client-lambda": "^3.958.0",
+    "@aws-sdk/client-secrets-manager": "^3.958.0",
     "aws-cdk-lib": "2.232.1",
     "constructs": "^10.0.0"
   }

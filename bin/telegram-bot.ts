@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-import * as cdk from 'aws-cdk-lib/core';
-import { TelegramBotStack } from '../lib/telegram-bot-stack';
+import { App } from "aws-cdk-lib";
+import { TelegramBotStack } from "../lib/telegram-bot-stack";
 
-const app = new cdk.App();
-new TelegramBotStack(app, 'TelegramBotStack', {
+const app = new App();
+new TelegramBotStack(app, "TelegramBotStack", {
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
    * but a single synthesized template can be deployed anywhere. */
@@ -17,4 +17,11 @@ new TelegramBotStack(app, 'TelegramBotStack', {
   // env: { account: '123456789012', region: 'us-east-1' },
 
   /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
+
+  /* ---- GLOBALS TAGS FOR FILTER IN COST EXPLORER ---- */
+  tags: {
+    project: "telegram-bot-example",
+    env: "pro",
+    "managed-by": "cdk",
+  },
 });

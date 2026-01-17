@@ -17,3 +17,13 @@ export type Pofile = {
   updatedAt: string;
   username: string;
 };
+
+export type ChatMessage = {
+  role: "user" | "assistant";
+  content: string;
+};
+
+export type BedrockMessage = {
+  role: "system" | "user" | "assistant";
+  content: { text: string }[];
+};

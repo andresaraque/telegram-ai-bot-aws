@@ -2,9 +2,10 @@ import {
   DynamoDBClient,
   GetItemCommand,
   PutItemCommand,
+  QueryCommand,
   UpdateItemCommand,
 } from "@aws-sdk/client-dynamodb";
-import { ConversationState, Pofile } from "./models";
+import { ChatMessage, ConversationState, Pofile } from "./models";
 import { logger } from "./logger";
 import { unmarshall } from "@aws-sdk/util-dynamodb";
 
@@ -113,4 +114,36 @@ export async function getUserProfile(chatId: number): Promise<Pofile | null> {
   }
 
   return unmarshall(profileRes.Item) as Pofile;
+}
+
+export async function getLastMessages(
+  chatId: number,
+  limit: number
+): Promise<ChatMessage[]> {
+  const res = await dynamoClient.send(
+    new QueryCommand({
+      TableName: process.env.TABLE_NAME,
+      KeyConditionExpression: "PK = :pk AND begins_with(SK, :sk)",
+      ExpressionAttributeValues: {
+        ":pk": { S: `USER#${chatId}` },
+        ":sk": { S: "MESSAGE#" },
+      },
+      ScanIndexForward: false,
+      Limit: limit,
+    })
+  );
+
+  if (!res.Items || res.Items.length === 0) {
+    return [];
+  }
+
+  return res.Items.map((item) => unmarshall(item))
+    .filter(
+      (m) => m.type === "TEXT" && (m.role === "USER" || m.role === "ASSISTANT")
+    )
+    .reverse()
+    .map((msg) => ({
+      role: msg.role === "USER" ? "user" : "assistant",
+      content: msg.content,
+    }));
 }

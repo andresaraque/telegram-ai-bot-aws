@@ -4,7 +4,10 @@ import {
   SecretValue,
   Stack,
   type StackProps,
+  CfnOutput
 } from "aws-cdk-lib";
+import { HttpApi, HttpMethod, HttpStage } from "aws-cdk-lib/aws-apigatewayv2";
+import { HttpLambdaIntegration } from "aws-cdk-lib/aws-apigatewayv2-integrations";
 import {
   AttributeType,
   Table,
@@ -225,5 +228,36 @@ export class TelegramBotStack extends Stack {
 
     // MessageStreamProcessorLambda grant permission to invoke aiReplyLambda
     aiReplyLambda.grantInvoke(messageStreamProcessorLambda);
+
+    /**************************************
+    -------- HTTP API GATEWAY --------
+    **************************************/
+    const httpApi = new HttpApi(this, "TelegramHttpApi", {
+      apiName: "telegram-example",
+      createDefaultStage: false,
+    });
+
+    const integration = new HttpLambdaIntegration(
+      "TelegramWebhookControllerLambdaIntegration",
+      webhookControllerLambda
+    );
+
+    httpApi.addRoutes({
+      path: "/webhook",
+      methods: [HttpMethod.POST],
+      integration,
+    });
+
+    // Stage for API --> PRO
+    new HttpStage(this, "ProStage", {
+      httpApi,
+      stageName: "pro",
+      autoDeploy: true,
+    });
+
+    /* ---- TERMINAL OUTPUTS ---- */
+    new CfnOutput(this, "WebhookUrlApiGatewayPRO", {
+      value: `${httpApi.apiEndpoint}/pro/webhook`,
+    });
   }
 }

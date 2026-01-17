@@ -11,7 +11,7 @@ export async function getSecrets() {
   if (cachedSecrets) return cachedSecrets;
 
   const command = new GetSecretValueCommand({
-    SecretId: process.env.LINGOMATE_SECRET_ARN!,
+    SecretId: process.env.TELEGRAM_SECRET_ARN!,
   });
 
   const response = await secretsClient.send(command);

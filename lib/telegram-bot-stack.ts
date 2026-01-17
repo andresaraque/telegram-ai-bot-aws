@@ -137,7 +137,7 @@ export class TelegramBotStack extends Stack {
         format: OutputFormat.ESM,
       },
       environment: {
-        LINGOMATE_SECRET_ARN: telegramSecret.secretArn,
+        TELEGRAM_SECRET_ARN: telegramSecret.secretArn,
         TABLE_NAME: usersTable.tableName,
         LOG_LEVEL: logLevel
       },

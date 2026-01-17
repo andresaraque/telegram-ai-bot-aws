@@ -11,7 +11,12 @@
     "aws-cdk",
     "typescript",
     "lambda",
-    "node22"
+    "node22",
+    "lambda",
+    "dynamodb",
+    "bedrock",
+    "ai",
+    "bot"
   ],
   "engines": {
     "node": ">=22.0.0"

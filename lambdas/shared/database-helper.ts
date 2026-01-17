@@ -4,7 +4,9 @@ import {
   PutItemCommand,
   UpdateItemCommand,
 } from "@aws-sdk/client-dynamodb";
-import { ConversationState } from "./models";
+import { ConversationState, Pofile } from "./models";
+import { logger } from "./logger";
+import { unmarshall } from "@aws-sdk/util-dynamodb";
 
 const dynamoClient = new DynamoDBClient({});
 
@@ -88,4 +90,27 @@ export async function updateConversationState(
     conversationState: { S: conversationState },
     updatedAt: { S: new Date().toISOString() },
   });
+}
+
+/**
+ * Gets the user's profile from DynamoDB
+ */
+export async function getUserProfile(chatId: number): Promise<Pofile | null> {
+  const profileRes = await dynamoClient.send(
+    new GetItemCommand({
+      TableName: process.env.TABLE_NAME,
+      Key: {
+        PK: { S: `USER#${chatId}` },
+        SK: { S: "PROFILE" },
+      },
+      ConsistentRead: true,
+    })
+  );
+
+  if (!profileRes.Item) {
+    logger.warn("Profile not found, skipping");
+    return null;
+  }
+
+  return unmarshall(profileRes.Item) as Pofile;
 }

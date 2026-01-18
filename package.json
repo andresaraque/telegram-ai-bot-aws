@@ -1,22 +1,23 @@
 {
-  "name": "telegram-bot",
+  "name": "aws-telegram-ai-bot",
   "version": "0.2.1",
-  "description": "Event-Driven Telegram Bot using AWS Lambda, EventBridge, and Node.js 22",
+  "license": "MIT",
+  "description": "Serverless Telegram AI bot built with AWS CDK, Lambda, DynamoDB, and Bedrock using an event-driven architecture",
   "author": "Andres Felipe Araque Mora",
   "keywords": [
-    "aws",
+    "telegram",
     "telegram-bot",
+    "telegram-ai-bot",
     "serverless",
-    "event-driven",
+    "aws",
     "aws-cdk",
-    "typescript",
-    "lambda",
-    "node22",
-    "lambda",
+    "aws-lambda",
     "dynamodb",
-    "bedrock",
+    "event-driven",
+    "aws-bedrock",
     "ai",
-    "bot"
+    "nodejs",
+    "typescript"
   ],
   "engines": {
     "node": ">=22.0.0"

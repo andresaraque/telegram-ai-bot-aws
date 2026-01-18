@@ -1,4 +1,6 @@
-# Serverless Telegram AI Bot: Event-Driven Architecture on AWS with CDK
+# Serverless Telegram AI Bot on AWS (CDK, Lambda, DynamoDB, Bedrock)
+
+A production-ready, serverless Telegram AI bot built on AWS using CDK, Lambda, DynamoDB Streams, and Amazon Bedrock.
 
 A high-performance, scalable, and cost-effective **Telegram AI Bot** built with **AWS CDK** and **TypeScript**. This project uses an **Event-Driven Architecture (EDA)** to handle high traffic and long-running workflows without hitting Telegram webhook timeouts.
 
@@ -188,10 +190,26 @@ npx cdk synth     # Generate CloudFormation template
 
 ---
 
+## 🎯 Use Cases
+
+- AI-powered Telegram chatbots
+- Serverless conversational agents
+- Event-driven messaging systems
+- AWS Bedrock LLM integrations
+- High-throughput Telegram bots
+
+---
+
 ## 📌 Notes
 
 * The webhook endpoint must be **public and HTTPS**.
 * The webhook Lambda **must always return `200 OK` quickly** to avoid message retries from Telegram.
 * All heavy processing is handled asynchronously via DynamoDB Streams.
+
+---
+
+## 📄 License
+
+This project is open source and licensed under the **MIT License**.
 
 ---

@@ -1,8 +1,6 @@
 # Serverless Telegram AI Bot on AWS (CDK, Lambda, DynamoDB, Bedrock)
 
-A production-ready, serverless Telegram AI bot built on AWS using CDK, Lambda, DynamoDB Streams, and Amazon Bedrock.
-
-A high-performance, scalable, and cost-effective **Telegram AI Bot** built with **AWS CDK** and **TypeScript**. This project uses an **Event-Driven Architecture (EDA)** to handle high traffic and long-running workflows without hitting Telegram webhook timeouts.
+A production-ready, serverless Telegram AI bot built on AWS using CDK, Lambda, DynamoDB Streams, HTTP API, and Amazon Bedrock.
 
 [![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge\&logo=amazon-aws\&logoColor=white)](https://aws.amazon.com/)
 [![Node.js](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge\&logo=node.js\&logoColor=white)](https://nodejs.org/en)
@@ -16,7 +14,7 @@ You can try the bot directly on Telegram:
 
 👉 [Erik AI bot](https://t.me/erik_ai_example_bot)
 
-<img src="./assets/chat-example.jpeg" alt="Chat example" style="max-width: 200px;" />
+<img src="./assets/chat-example.jpeg" alt="Chat example" width="250" />
 
 ---
 
@@ -71,8 +69,8 @@ This design guarantees low latency for Telegram while allowing complex processin
 ### Installation
 
 ```bash
-git clone https://github.com/andresaraque/telegram-bot.git
-cd telegram-bot
+git clone https://github.com/andresaraque/telegram-ai-bot-aws.git
+cd telegram-ai-bot-aws
 npm install
 ```
 

@@ -20,6 +20,8 @@ You can try the bot directly on Telegram:
 
 ## 🏗️ Architecture Overview
 
+<img src="./assets/architecture-diagram.png" alt="architecture diagram" />
+
 Unlike traditional bots that process all logic inside the webhook request-response cycle, this bot follows an **asynchronous and decoupled flow**:
 
 1. **Telegram Webhook** sends a `POST` request to **Amazon API Gateway**.

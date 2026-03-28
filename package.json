@@ -1,6 +1,6 @@
 {
   "name": "telegram-ai-bot-aws",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "license": "MIT",
   "description": "Serverless Telegram AI bot built with AWS CDK, Lambda, DynamoDB, and Bedrock using an event-driven architecture",
   "author": "Andres Felipe Araque Mora",
